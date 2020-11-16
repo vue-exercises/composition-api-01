@@ -19,13 +19,15 @@ export default {
     let lastName = ref('');
     let uAge = ref(31);
 
-    watch(uAge, function(newValue, oldValue) {
-      console.log('Old age: ' + oldValue);
-      console.log('New age: ' + newValue);
-    });
-
     let uName = computed(function() {
       return firstName.value + ' ' + lastName.value;
+    });
+
+    watch([uAge, uName], function(newValues, oldValues) {
+      console.log('Old age: ' + oldValues[0]);
+      console.log('New age: ' + newValues[0]);
+      console.log('Old name: ' + oldValues[1]);
+      console.log('New name: ' + newValues[1]);
     });
 
     function setNewAge() {
